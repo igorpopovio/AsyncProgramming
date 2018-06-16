@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,12 @@ namespace AsyncProgramming
         private void ShortTaskButton_Click(object sender, RoutedEventArgs e)
         {
             ShortTaskTextBlock.Text = $"{++count}";
+        }
+
+        private void LongTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            Thread.Sleep(2000);
+            LongTaskTextBlock.Text = "Completed long task";
         }
     }
 }
