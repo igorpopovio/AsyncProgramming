@@ -23,7 +23,8 @@
         <Button x:Name="ShortTaskButton"
                 Content="Short Running Task"
                 Margin="0,0,0,10"
-                Height="50" />
+                Height="50"
+                Click="ShortTaskButton_Click" />
         <TextBlock x:Name="ShortTaskTextBlock"
                    Text="Count"
                    Margin="0,0,0,10"

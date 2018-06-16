@@ -24,5 +24,11 @@ namespace AsyncProgramming
         {
             InitializeComponent();
         }
+
+        int count;
+        private void ShortTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShortTaskTextBlock.Text = $"{++count}";
+        }
     }
 }
