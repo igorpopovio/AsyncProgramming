@@ -37,11 +37,20 @@ namespace AsyncProgramming
             LongTaskButton.IsEnabled = false;
             LongTaskTextBlock.Text = "Starting long task";
 
-            var result = await Task.Run(() =>
+            string result = "";
+            try
             {
-                Thread.Sleep(2000);
-                return "Completed long task";
-            });
+                result = await Task.Run(() =>
+                {
+                    Thread.Sleep(2000);
+                    throw new Exception("Something crashed!");
+                    return "Completed long task";
+                });
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
 
             LongTaskButton.IsEnabled = true;
             LongTaskTextBlock.Text = result;
