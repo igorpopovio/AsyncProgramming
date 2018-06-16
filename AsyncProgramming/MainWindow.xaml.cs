@@ -39,7 +39,8 @@ namespace AsyncProgramming
 
             var task = Task.Run(() =>
             {
-                throw new Exception("Something crashed!");
+                Thread.Sleep(2000);
+                return "Completed long task";
             });
 
             task.ContinueWith((t) =>
@@ -49,7 +50,7 @@ namespace AsyncProgramming
                     LongTaskButton.IsEnabled = true;
                     LongTaskTextBlock.Text = t.IsFaulted ?
                         t.Exception.InnerException.Message :
-                        "Completed long task";
+                        t.Result;
                 });
             });
         }
