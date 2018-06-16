@@ -35,25 +35,30 @@ namespace AsyncProgramming
         private async void LongTaskButton_Click(object sender, RoutedEventArgs e)
         {
             LongTaskButton.IsEnabled = false;
-            LongTaskTextBlock.Text = "Starting long task";
+            LongTaskTextBlock.Text = "Starting long tasks";
 
-            string result = "";
-            try
+            var firstLongTask = Task.Run(() =>
             {
-                result = await Task.Run(() =>
-                {
-                    Thread.Sleep(2000);
-                    throw new Exception("Something crashed!");
-                    return "Completed long task";
-                });
-            }
-            catch (Exception ex)
+                Thread.Sleep(1000);
+                return "first";
+            });
+
+            var secondLongTask = Task.Run(() =>
             {
-                result = ex.Message;
-            }
+                Thread.Sleep(2000);
+                return "second";
+            });
+
+            var thirdLongTask = Task.Run(() =>
+            {
+                Thread.Sleep(500);
+                return "third";
+            });
+
+            var results = await Task.WhenAll(firstLongTask, secondLongTask, thirdLongTask);
 
             LongTaskButton.IsEnabled = true;
-            LongTaskTextBlock.Text = result;
+            LongTaskTextBlock.Text = "Completed " + string.Join(", ", results) + " tasks";
         }
     }
 }
