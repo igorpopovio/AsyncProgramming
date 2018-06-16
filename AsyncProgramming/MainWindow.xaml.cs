@@ -32,27 +32,19 @@ namespace AsyncProgramming
             ShortTaskTextBlock.Text = $"{++count}";
         }
 
-        private void LongTaskButton_Click(object sender, RoutedEventArgs e)
+        private async void LongTaskButton_Click(object sender, RoutedEventArgs e)
         {
             LongTaskButton.IsEnabled = false;
             LongTaskTextBlock.Text = "Starting long task";
 
-            var task = Task.Run(() =>
+            var result = await Task.Run(() =>
             {
                 Thread.Sleep(2000);
                 return "Completed long task";
             });
 
-            task.ContinueWith((t) =>
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    LongTaskButton.IsEnabled = true;
-                    LongTaskTextBlock.Text = t.IsFaulted ?
-                        t.Exception.InnerException.Message :
-                        t.Result;
-                });
-            });
+            LongTaskButton.IsEnabled = true;
+            LongTaskTextBlock.Text = result;
         }
     }
 }
