@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AsyncProgramming"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Async Programming"
+        Width="400"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <StackPanel Margin="10">
+        <Button x:Name="LongTaskButton"
+                Content="Long Running Task"
+                Margin="0,0,0,10"
+                Height="50" />
+        <TextBlock x:Name="LongTaskTextBlock"
+                   Text="Status"
+                   Margin="0,0,0,20"
+                   HorizontalAlignment="Center"
+                   FontWeight="Bold" />
+        <Button x:Name="ShortTaskButton"
+                Content="Short Running Task"
+                Margin="0,0,0,10"
+                Height="50" />
+        <TextBlock x:Name="ShortTaskTextBlock"
+                   Text="Count"
+                   Margin="0,0,0,10"
+                   HorizontalAlignment="Center"
+                   FontWeight="Bold" />
+    </StackPanel>
 </Window>
